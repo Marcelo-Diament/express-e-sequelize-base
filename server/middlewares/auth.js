@@ -28,11 +28,11 @@ const auth = async (req, res, next) => {
   }
   
   // FILTRAMOS ALGUNS CAMPOS COM O JSON.STRINGIFY (COMO A SENHA)
-  let usuario = JSON.parse(JSON.stringify(usuarioLogado[0], ['id', 'nome', 'sobrenome', 'apelido', 'nascimento', 'corPreferida', 'avatar', 'email', 'telefone', 'plano', 'admin']))
+  let usuario = JSON.parse(JSON.stringify(usuarioLogado[0], ['id', 'nome', 'sobrenome', 'apelido', 'nascimento', 'corPreferida', 'avatar', 'email', 'telefone', 'plano_id', 'papel_id']))
 
   // DEFINIMOS OS COOKIES USUÁRIO (OBJETO) E ADMIN (BOOLEANO)
   res.cookie('usuario', usuario)
-  res.cookie('admin', `${usuarioLogado[0].admin}`)
+  res.cookie('admin', `${(usuarioLogado[0]["papel_id"] === 1)}`)
 
   // CONTINUA PARA A PRÓXIMA ETAPA
   next()

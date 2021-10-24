@@ -14,7 +14,7 @@ const controller = {
   },
   show: (req, res, next) => {
     const { id } = req.params
-    const usuario = usuariosPlaceholder[id]
+    const usuario = usuariosPlaceholder[id-1]
     res.render('user', {
       titulo: 'Usuário',
       subtitulo: `Usuário #${id}`,

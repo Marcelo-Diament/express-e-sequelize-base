@@ -2,7 +2,7 @@
   <a id="logoTopo" href="/" title="Ir para homepage">
     <img src="/images/logo.png" alt="Jeff Co." width="136" height="36">
   </a>
-  <% if(locals.usuarioLogado && locals.usuarioLogado.admin) { %>
+  <% if(locals.usuarioLogado && locals.usuarioLogado && usuarioLogado.papel_id === 1) { %>
   <nav class="nav nav--admin">
     <ul class="nav__list">
       <li class="nav__item bg-secondary">

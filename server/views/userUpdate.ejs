@@ -44,10 +44,6 @@
             <input type="date" id="nascimento" name="nascimento" required value="<%= locals.usuarioEditando && usuarioEditando.nascimento %>">
             <label for="nascimento">Data de Nascimento</label>
           </div>
-          <div class="input-group">
-            <input type="number" id="idade" name="idade" min="18" max="150" step="1" placeholder="50" value="<%= locals.usuarioEditando && usuarioEditando.idade %>">
-            <label for="idade">Idade</label>
-          </div>
           <% if(locals.usuarioEditando) { %>
           <div class="input-group">
             <input type="password" id="senha" name="senha" placeholder="Se quiser alterar" value="">
@@ -92,58 +88,6 @@
           <div class="input-group">
             <input type="tel" id="telefone" name="telefone" placeholder="+5511987654321" required value="<%= locals.usuarioEditando && usuarioEditando.telefone %>">
             <label for="telefone">Telefone</label>
-          </div>
-          <div class="input-group">
-            <input type="datetime-local" id="dataParaContato" name="dataParaContato" value="<%= locals.usuarioEditando && usuarioEditando.dataParaContato %>">
-            <label for="dataParaContato">Melhor dia e hora para contato</label>
-          </div>
-          <div>
-            <p class="flex-item-full-row">Como prefere que te contatemos?</p>
-            <div class="input-group input-group--radio">
-              <div>
-                <input type="radio" id="formaContatoWhatsapp" name="formaContato" value="Whatsapp" checked="<%= locals.usuarioEditando && usuarioEditando.formaContato === 'Whatsapp' && 'checked' %>">
-                <label for="formaContatoWhatsapp">Whatsapp</label>
-              </div>
-              <div>
-                <input type="radio" id="formaContatoLigacao" name="formaContato" value="Ligação" checked="<%= locals.usuarioEditando && usuarioEditando.formaContato === 'Ligação' && 'checked' %>">
-                <label for="formaContatoLigacao">Ligação</label>
-              </div>
-              <div>
-                <input type="radio" id="formaContatoEmail" name="formaContato" value="Email" checked="<%= locals.usuarioEditando && usuarioEditando.formaContato === 'Email' && 'checked' %>">
-                <label for="formaContatoEmail">Email</label>
-              </div>
-            </div>
-          </div>
-          <div>
-            <p>Como prefere que te chamemos?</p>
-            <div class="input-group">
-              <select name="tratamento" id="tratamento" required value="<%= locals.usuarioEditando && usuarioEditando.tratamento %>">
-                <option disabled selected>Selecionar</option>
-                <optgroup label="Informais">
-                  <option value="nome">Primeiro Nome</option>
-                  <option value="apelido">Apelido</option>
-                  <option value="sobrenome">Sobrenome</option>
-                  <option value="nomeCompleto">Nome Completo</option>
-                </optgroup>
-                <optgroup label="Formais">
-                  <option value="vosMerce">Vós Mercê</option>
-                  <option value="vossaSenhoria">Vossa Senhoria</option>
-                </optgroup>
-                <optgroup label="Outros">
-                  <option value="docinhoDeCoco">Docinho de Côco</option>
-                  <option value="meuBem">Meu Bem</option>
-                </optgroup>
-              </select>
-            </div>
-          </div>
-          <div class="input-group">
-            <input list="msgVozOptions" id="ouveMsgVoz" name="ouveMsgVoz">
-            <label for="ouveMsgVoz">Ouve mensagem de voz?</label>
-            <datalist id="msgVozOptions">
-              <option value="Sim">Sempre ouço</option>
-              <option value="Às vezes">Só de vez em quando...</option>
-              <option value="Não">Jamais, nunca ouço!</option>
-            </datalist>
           </div>
         </fieldset>
         <fieldset>

@@ -16,7 +16,7 @@
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="icon" sizes="512x512" href="/favicon.ico" />
 </head>
-<% if(locals.usuarioLogado && locals.usuarioLogado.admin && locals.usuarioLogado.admin === true) { %>
+<% if(locals.usuarioLogado && locals.usuarioLogado.papel_id && locals.usuarioLogado.papel_id === 1) { %>
 
 <body class="admin">
   <% } else { %>
