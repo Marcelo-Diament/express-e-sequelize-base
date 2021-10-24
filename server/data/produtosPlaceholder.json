@@ -1,6 +1,6 @@
 [
   {
-    "id": 0,
+    "id": 1,
     "nome": "Caixa de Som",
     "preco": 500,
     "precoPromo": 499,
@@ -22,7 +22,7 @@
     }
   },
   {
-    "id": 1,
+    "id": 2,
     "nome": "Câmera Digital",
     "preco": 350,
     "precoPromo": 349,
@@ -44,7 +44,7 @@
     }
   },
   {
-    "id": 2,
+    "id": 3,
     "nome": "Controle Game",
     "preco": 600,
     "precoPromo": null,
@@ -66,7 +66,7 @@
     }
   },
   {
-    "id": 3,
+    "id": 4,
     "nome": "Fone de Ouvido",
     "preco": 800,
     "precoPromo": 600,
@@ -88,7 +88,7 @@
     }
   },
   {
-    "id": 4,
+    "id": 5,
     "nome": "Video Game",
     "preco": 700,
     "precoPromo": null,
@@ -110,7 +110,7 @@
     }
   },
   {
-    "id": 5,
+    "id": 6,
     "nome": "Game Boy",
     "preco": 700,
     "precoPromo": null,
@@ -132,7 +132,7 @@
     }
   },
   {
-    "id": 6,
+    "id": 7,
     "nome": "Microfone",
     "preco": 750,
     "precoPromo": null,
@@ -154,7 +154,7 @@
     }
   },
   {
-    "id": 7,
+    "id": 8,
     "nome": "Notebook",
     "preco": 1700,
     "precoPromo": 1500,
@@ -176,7 +176,7 @@
     }
   },
   {
-    "id": 8,
+    "id": 9,
     "nome": "Óculos Webcam",
     "preco": 1000,
     "precoPromo": 990,
@@ -198,7 +198,7 @@
     }
   },
   {
-    "id": 9,
+    "id": 10,
     "nome": "Óculos VR",
     "preco": 1000,
     "precoPromo": 990,
@@ -220,7 +220,7 @@
     }
   },
   {
-    "id": 10,
+    "id": 11,
     "nome": "Pendrive",
     "preco": 17,
     "precoPromo": 15,
@@ -242,7 +242,7 @@
     }
   },
   {
-    "id": 11,
+    "id": 12,
     "nome": "Smartwatch",
     "preco": 2000,
     "precoPromo": null,

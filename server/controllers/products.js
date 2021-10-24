@@ -15,7 +15,7 @@ const controller = {
   },
   show: async (req, res, next) => {
     const { id } = await req.params
-    const produto = produtosPlaceholder[id]
+    const produto = produtosPlaceholder[id - 1]
     res.render('product', {
       titulo: `${produto.nome}`,
       subtitulo: `${produto.nome} | ${produto.categoria}`,
