@@ -2,6 +2,8 @@ const Sequelize = require('sequelize'),
   config = require('../config/database'),
   db = new Sequelize(config)
 
+const { User } = require('../models')
+
 const controller = {
   register: (req, res) => {
     res.render('register', {
@@ -12,7 +14,7 @@ const controller = {
     });
   },
   add: async (req, res) => {
-    const {
+    let {
       nome,
       sobrenome,
       apelido,
@@ -24,7 +26,9 @@ const controller = {
       telefone,
       bio
     } = req.body
-    const telefoneFormatado = telefone.replace(/\D/g, '')
+    telefone = telefone.replace(/\D/g, '')
+    const criadoEm = new Date()
+    const modificadoEm = new Date()
     const plano_id = 1
     const papel_id = email.indexOf('@pachecoimoveis.com.br') > 0 ? 1 : 2
     const user = await db.query(`
@@ -47,7 +51,26 @@ const controller = {
       },
       type: Sequelize.QueryTypes.INSERT
     })
-    if (user) {
+
+    // USANDO MODEL QUERYING - Método create - recebe os dados do req.body (e outros) e cria o registro desejado.
+    const usuario = await User.create({
+      nome,
+      sobrenome,
+      apelido,
+      nascimento,
+      senha,
+      corPreferida,
+      avatar,
+      email,
+      telefone,
+      bio,
+      plano_id,
+      papel_id,
+      criadoEm,
+      modificadoEm
+    })
+
+    if (usuario) {
       res.redirect('/usuarios')
     } else {
       res.json({ status: 500, msg: 'Deu ruim' })
@@ -78,12 +101,18 @@ const controller = {
       type: Sequelize.QueryTypes.SELECT
     })
 
+    const usuarioEditando = await User.findOne({
+      where: {
+        id: idBuscado
+      }
+    })
+
     res.render('userUpdate', {
       titulo: 'Cadastro',
       subtitulo: req.cookies.usuario ? `Verifique os dados e atualize os que precisar` : 'Preencha os dados e complete seu cadastro!',
       usuarioLogado: req.cookies.usuario,
       usuarioAdmin: req.cookies.admin,
-      usuarioEditando: user[0]
+      usuarioEditando
     })
   },
   edit: async (req, res, next) => {
@@ -135,10 +164,30 @@ const controller = {
       },
       type: Sequelize.QueryTypes.UPDATE
     })
+    // USANDO MODEL QUERYING - Método update - recebe os dados do req.body (e outros), encontra o registro a ser alterado (através da condição do WHERE) e atualiza o registro desejado.
+    const usuario = await User.update(
+      {
+        nome,
+        sobrenome,
+        apelido,
+        nascimento,
+        senha,
+        corPreferida,
+        email,
+        telefone,
+        bio,
+        modificadoEm
+      },
+      {
+        where: {
+          id
+        }
+      }
+    )
     // if (req.cookies.usuario.id === id) {
     //   res.clearCookie('usuario').cookie('usuario', usuario)
     // }
-    console.log(user)
+    console.log(usuario)
     res.redirect('../../usuarios')
   },
   delete: async (req, res, next) => {
@@ -150,7 +199,15 @@ const controller = {
       },
       type: Sequelize.QueryTypes.DELETE
     })
-    if (!user) {
+
+    // USANDO MODEL QUERYING - Método destroy - recebe a condição para a busca(where) e exclui/deleta o registro desejado.
+    const usuario = await User.destroy({
+      where: {
+        id: idBuscado
+      }
+    })
+
+    if (!usuario) {
       res.redirect('/usuarios')
     } else {
       res.json({ status: 500, msg: 'Deu ruim' })

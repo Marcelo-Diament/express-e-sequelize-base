@@ -66,6 +66,7 @@ module.exports = (sequelize, DataType) => {
     {
       tableName: 'users', // Nome da tabela lá no nosso Banco de Dados (BD)
       timestamps: false // Indicamos para que não crie os atributos/campos/colunas createdAt e modifiedAt, pois estamos usando em PT-BR
-    })
+    }
+  )
   return User
 }
