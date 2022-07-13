@@ -72,13 +72,28 @@ const controller = {
   },
   list: async (req, res, next) => {
     let admin = req.cookies.admin
+
+    // CAPTURANDO OS QUERY PARAMS (exemplo: meudominio.com?orderBy=id_ASC) E DEFINIDO UM VALOR DEFAULT, CASO NÃO EXISTA O QUERY PARAM
+    const { orderBy = 'id_ASC' } = req.query
+    /*
+     * USANDO O SPLIT E O DESTRUCTURING PARA SEPARAR OS TERMOS "id" DE "ASC"
+     * E ATRIBUINDO ESSES VALORES ÀS CONSTS orderParam E orderDirection
+    */
+    const [orderParam, orderDirection] = orderBy.split('_')
+
     const users = await db.query('SELECT * FROM users', {
       type: Sequelize.QueryTypes.SELECT
     })
 
     // USANDO MODEL QUERYING - Método findAll - busca e retorna todos os registros.
-    const usuarios = await User.findAll()
+    // PASSANDO A OPÇÃO DE ORDERNAMENTO PARA O SEQUELIZE - ORDER RECEBE UM ARRAY COM OS ARGUMENTOS, TAMBÉM EM FORMATO DE ARRAY
+    const usuarios = await User.findAll({
+      order: [
+        [orderParam, orderDirection]
+      ]
+    })
 
+    // res.json({usuarios})
     if (!admin || admin === 'false') {
       res.render('users', {
         titulo: 'Ops!',
@@ -93,7 +108,7 @@ const controller = {
       res.render('usersList', {
         titulo: 'Usuários',
         subtitulo: 'Listagem de Usuários',
-        usuarios: users,
+        usuarios,
         usuarioLogado: req.cookies.usuario,
         usuarioAdmin: admin
       });
